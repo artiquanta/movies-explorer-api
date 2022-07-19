@@ -19,6 +19,7 @@ const DEFAULT_ERROR_CODE = 500;
 const allowedCors = [
   'http://movielibrary.nomoredomains.xyz:3000',
   'https://movielibrary.nomoredomains.xyz:3000',
+  'http://localhost:3000',
 ];
 
 // Разрешённые методы
