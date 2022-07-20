@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
-const { DB_ADDRESS = 'localhost:27017' } = process.env;
+const { NODE_ENV, DB_ADDRESS } = process.env;
 
 const { logRequest, logError } = require('./middlewares/logger');
 const { helmetConfig, rateLimitConfig } = require('./utils/security');
@@ -41,6 +41,6 @@ app.use(require('./middlewares/celebrateErrorHandler'));
 // Централизованный обработчик ошибок
 app.use(require('./middlewares/errorHandler'));
 
-mongoose.connect(`mongodb://${DB_ADDRESS}/moviesdb`);
+mongoose.connect(`mongodb://${NODE_ENV === 'production' ? DB_ADDRESS : 'localhost:27017'}/moviesdb`);
 
 module.exports = app;

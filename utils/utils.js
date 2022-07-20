@@ -9,6 +9,7 @@ const celebrateErrors = {
   'string.max': '{#label} должен иметь максимальную длину - {#limit}',
   'string.email': 'Указан некорректный формат email',
   'string.pattern.base': '{#label} имеет некорректный формат данных. Проверьте данные и повторите запрос!',
+  'any.uknown': 'поле {#labe} запрещено',
   'any.required': '{#label} обязательно!',
 };
 
