@@ -1,6 +1,6 @@
 {
   "name": "movies-explorer-api",
-  "version": "0.5.1",
+  "version": "1.0.3",
   "description": "Дипломная работа. Бэкенд",
   "main": "app.js",
   "scripts": {
