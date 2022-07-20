@@ -109,7 +109,7 @@ describe('Проверка авторизация и выхода из сист�
   });
 });
 
-describe('Проверка получения информации о пользователе', () => {
+describe('Проверка взаимодействия с данными пользователя', () => {
   let userId;
   let token;
 
@@ -133,30 +133,28 @@ describe('Проверка получения информации о польз
     return User.findByIdAndRemove(userId);
   });
 
-  describe('Проверка получения информации о пользователе', () => {
-    it('Должен возвращать информацию о текущем пользователе', () => {
-      return request.get('/users/me')
-        .set('Cookie', [`jwt=${token}`])
-        .then(response => {
-          expect(response.status).toBe(200);
-          expect(response.body.name).toBe(userData.name);
-          expect(response.body.email).toBe(userData.email);
-          expect(response.body._id).toBeDefined();
-        });
-    });
+  it('Должен возвращать информацию о текущем пользователе', () => {
+    return request.get('/users/me')
+      .set('Cookie', [`jwt=${token}`])
+      .then(response => {
+        expect(response.status).toBe(200);
+        expect(response.body.name).toBe(userData.name);
+        expect(response.body.email).toBe(userData.email);
+        expect(response.body._id).toBeDefined();
+      });
+  });
 
-    it('Должен обновлять информацию о пользователе', () => {
-      return request.patch('/users/me')
-        .set('Cookie', [`jwt=${token}`])
-        .send({
-          email: userData.testEmail,
-          name: userData.testName,
-        })
-        .then(response => {
-          expect(response.status).toBe(200);
-          expect(response.body.email).toBe(userData.testEmail);
-          expect(response.body.name).toBe(userData.testName);
-        });
-    });
+  it('Должен обновлять информацию о пользователе', () => {
+    return request.patch('/users/me')
+      .set('Cookie', [`jwt=${token}`])
+      .send({
+        email: userData.testEmail,
+        name: userData.testName,
+      })
+      .then(response => {
+        expect(response.status).toBe(200);
+        expect(response.body.email).toBe(userData.testEmail);
+        expect(response.body.name).toBe(userData.testName);
+      });
   });
 });
